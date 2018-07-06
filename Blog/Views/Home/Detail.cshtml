@@ -1,0 +1,20 @@
+﻿@model Blog.Models.PostDetails
+
+@{
+    ViewBag.Title = "Detalles";
+}
+<div class="container">
+    <h2>Post </h2>
+    <div class="col-md-12">
+        <h3>@Model.Post.Title</h3>
+    </div>
+    <div class="col-md-12">
+        <h4>@Model.Post.Category</h4>
+    </div>
+    <div class="col-md-12">
+        @Model.Post.Content
+
+    </div>
+
+</div>
+

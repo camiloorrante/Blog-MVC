@@ -1,0 +1,59 @@
+﻿@model Blog.Models.Home
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Blog</h1>
+    </div>
+
+    
+    <div class="row">
+        @Html.ActionLink("Nuevo post", "CreateEdit", new { }, new { @class = "btn btn-default" })
+    </div>
+    <div class="row">
+        @foreach (var post in Model.Posts)
+        {
+        <div class="col-md-4">
+            <h4> @post.Title</h4>
+            @post.CategoryId
+            @post.Content
+            @post.Date
+            @Html.ActionLink("Ver más", "Detail", new { id = post.PostId })
+            @Html.ActionLink("Editar", "CreateEdit", new { id = post.PostId })
+            @Html.ActionLink("Eliminar", "", new {  }, new { @class = "anchorDetail", postId = post.PostId })
+
+            <button class="btn btn-default" 
+                    data-record-id="@post.PostId" 
+                    data-record-title="@post.Title" 
+                    data-toggle="modal" 
+                    data-target="#confirm-delete">
+                Borrar
+            </button>
+        </div>
+        }
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <p>Estas a punto de borrar <b><i class="title"></i></b> , esto es irreversible.</p>
+                <p>Do you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger btn-ok">Borrar</button>
+            </div>
+        </div>
+    </div>
+</div>  
